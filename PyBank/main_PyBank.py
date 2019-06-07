@@ -35,11 +35,23 @@ greatest_increase = revenue[0]
 greatest_decrease = revenue[0]
 total_revenue = 0
 
+# Loop through all values in revenue list to find greatest increase and decrease.
+for rev in range(len(revenue)):
+    if revenue[rev] >= greatest_increase:
+        greatest_increase = revenue[rev]
+        
+        # Set date where greatest total revenue is found in list.
+        greatest_month_increase = dates[rev]
 
+    elif revenue[rev] <= greatest_decrease:
+        greatest_decrease = revenue[rev]
+        
+        # Set date where greatest total loss is found in list.
+        greatest_month_decrease = dates[rev]
 
+    # Add each revenue to calculate total revenue.
+    total_revenue += revenue[rev]
 
-
-
-
-
+# Calculation for average change.
+average_change = round(total_revenue/total_months, 2)
 

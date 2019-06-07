@@ -59,9 +59,9 @@ average_change = round(total_revenue/total_months, 2)
 print("Financial Analysis")
 print("-"*50)
 print(f"Total Months: {total_months}")
-print(f"Total Revenue: ${total_revenue}")
+print(f"Total Revenue: ${total_revenue: ,d}")
 print(f"Average Change: {average_change}")
-print(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase}")
-print(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease})")
+print(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase: ,d}")
+print(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease: ,d})")
 
 

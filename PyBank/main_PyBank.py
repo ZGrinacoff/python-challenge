@@ -64,4 +64,16 @@ print(f"Average Change: {average_change}")
 print(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase: ,d}")
 print(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease: ,d})")
 
+# Create path for output file in the same folder.
+output_path = os.path.join("output_main_PyBank.txt")
+
+# Opens .txt file in write mode and writes summary.
+with open(output_path, 'w') as writefile:
+    writefile.writelines("Financial Analysis\n")
+    writefile.writelines("-"*50)
+    writefile.writelines(f"\nTotal Months: {total_months}\n")
+    writefile.writelines(f"Total Revenue: ${total_revenue: ,d}\n")
+    writefile.writelines(f"Average Change: {average_change}\n")
+    writefile.writelines(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase: ,d}\n")
+    writefile.writelines(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease: ,d})\n")
 

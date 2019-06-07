@@ -55,3 +55,13 @@ for rev in range(len(revenue)):
 # Calculation for average change.
 average_change = round(total_revenue/total_months, 2)
 
+# Print results out to terminal window.
+print("Financial Analysis")
+print("-"*50)
+print(f"Total Months: {total_months}")
+print(f"Total Revenue: ${total_revenue}")
+print(f"Average Change: {average_change}")
+print(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase}")
+print(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease})")
+
+

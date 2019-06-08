@@ -52,4 +52,23 @@ vote_percent = []
 # Loop through number of votes and perform percent calculation for each candidate.
 for num in number_of_votes:
     vote_percent.append(round(num/total_vote*100))
-#print(vote_percent)    
+#print(vote_percent)
+
+# Zip candidate, number of votes, and vote percent into tuples in list.
+# To be used for winner check.
+clean_candidate_data = list(zip(candidate, number_of_votes, vote_percent))
+#print(clean_candidate_data)
+
+# Create an empty list for winner.
+winner = []
+# Loop through all of the individual candidate data to determine winner by pop vote.
+for candidate in clean_candidate_data:
+    if max(number_of_votes) == candidate[1]:
+    #print(candidate[1])
+        winner.append(candidate[0])
+    #print(winner[0])
+
+# Create list for winning candidate by indexing only one item in list.
+win = winner[0]
+#print(win)
+

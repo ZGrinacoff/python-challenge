@@ -1,7 +1,7 @@
 import os
 import csv
 
-pypoll_csv = os.path.join('PyPoll' ,'election_data.csv')
+pypoll_csv = os.path.join('election_data.csv')
 
 # Create dictionary for polling candidate's name and vote count.
 # To be read in when csv is opened.

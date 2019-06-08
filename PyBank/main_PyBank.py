@@ -2,7 +2,7 @@ import os
 import csv
 
 # Path to collect data from PyBank folder.
-pybank_csv = os.path.join('PyBank','budget_data.csv')
+pybank_csv = os.path.join('budget_data.csv')
 
 # Create empty lists to hold column(s) data.
 dates = []

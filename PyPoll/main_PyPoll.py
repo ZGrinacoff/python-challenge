@@ -41,7 +41,7 @@ number_of_votes = []
 # Loop through poll data dictionary and store key:candidate/value:number_of_votes in lists.
 for key, value in poll_data.items():
     candidate.append(key)
-    number_of_votes.append(number_of_votes)
+    number_of_votes.append(value)
 
 print(candidate)
 print(number_of_votes)

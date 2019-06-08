@@ -43,5 +43,13 @@ for key, value in poll_data.items():
     candidate.append(key)
     number_of_votes.append(value)
 
-print(candidate)
-print(number_of_votes)
+#print(candidate)
+#print(number_of_votes)
+
+# Create empty list to hold vote percent.
+vote_percent = []
+
+# Loop through number of votes and perform percent calculation for each candidate.
+for num in number_of_votes:
+    vote_percent.append(round(num/total_vote*100))
+#print(vote_percent)    

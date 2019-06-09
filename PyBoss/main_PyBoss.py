@@ -14,6 +14,8 @@ First_Name = []
 Last_Name = []
 old_date_format = []
 new_date_format = []
+ssn_old = []
+ssn_new = []
 
 # Read in csv file.
 with open(pyboss_csv, 'r') as csvfile:
@@ -37,4 +39,10 @@ with open(pyboss_csv, 'r') as csvfile:
         datetimeobject = datetime.strptime(old_date_format,'%Y-%m-%d')
         new_date_format = datetimeobject.strftime('%m/%d/%Y')
         #print(new_date_format)
+
+        # Reformat SSN.
+        ssn_old = row[3]
+        #print(type(ssn_old))
+        ssn_new = ssn_old.
+
 

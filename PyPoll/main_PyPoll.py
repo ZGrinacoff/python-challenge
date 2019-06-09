@@ -84,3 +84,21 @@ for output in clean_candidate_data:
 print("-"*26)
 print(f"Winner: {win}")
 print("-"*26)
+
+# Create path for output file in the same folder.
+output_path = os.path.join("output_main_PyPoll.txt")
+
+# Opens .txt file in write mode and writes summary.
+with open(output_path, 'w') as writefile:
+    writefile.writelines("Election Results\n")
+    writefile.writelines("-"*26)
+    writefile.writelines(f"\nTotal Votes: {total_vote: ,d}\n")
+    writefile.writelines("-"*26)
+    # Loop through clean candidate data to return candidate summary.
+    # Added 2 extra zeros to end of vote percent.
+    for output in clean_candidate_data:
+        writefile.writelines(f"\n{output[0]}: {output[2]}00% ({output[1]:,d})")
+    writefile.writelines("\n")
+    writefile.writelines("-"*26)
+    writefile.writelines(f"\nWinner: {win}\n")
+    writefile.writelines("-"*26)

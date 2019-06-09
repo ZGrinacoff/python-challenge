@@ -51,7 +51,7 @@ vote_percent = []
 
 # Loop through number of votes and perform percent calculation for each candidate.
 for num in number_of_votes:
-    vote_percent.append(round(num/total_vote*100))
+    vote_percent.append(round(num/total_vote*100, 1))
 #print(vote_percent)
 
 # Zip candidate, number of votes, and vote percent into tuples in list.
@@ -72,3 +72,15 @@ for candidate in clean_candidate_data:
 win = winner[0]
 #print(win)
 
+# Print results out to terminal window.
+print("Election Results")
+print("-"*26)
+print(f"Total Votes: {total_vote: ,d}")
+print("-"*26)
+# Loop through clean candidate data to return candidate summary.
+# Added 2 extra zeros to end of vote percent.
+for output in clean_candidate_data:
+    print(f"{output[0]}: {output[2]}00% ({output[1]:,d})")
+print("-"*26)
+print(f"Winner: {win}")
+print("-"*26)

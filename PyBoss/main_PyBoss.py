@@ -70,6 +70,7 @@ old_date_format = []
 new_date_format = []
 ssn_old = []
 ssn_new = []
+state = []
 
 # Read in csv file.
 with open(pyboss_csv, 'r') as csvfile:
@@ -78,7 +79,7 @@ with open(pyboss_csv, 'r') as csvfile:
     for row in csvreader:
         
         # Drops all employee ids into new list.
-        emp_id.append(row[2])
+        emp_id.append(row[0])
 
         # Splits column Names into two separate First/Last names lists.
         names = row[1].split(' ')
@@ -91,7 +92,8 @@ with open(pyboss_csv, 'r') as csvfile:
         old_date_format = row[2]
         #print(type(old_date_format))
         datetimeobject = datetime.strptime(old_date_format,'%Y-%m-%d')
-        new_date_format = datetimeobject.strftime('%m/%d/%Y')
+        new_date_format.append(datetimeobject.strftime('%m/%d/%Y'))
+
         #print(type(new_date_format))
 
         # Reformat SSN.
@@ -99,6 +101,17 @@ with open(pyboss_csv, 'r') as csvfile:
         ssn_new.append('***-**-' + ssn_old.split('-')[2])
         #print(ssn_new)
 
-        
+        # Reformat and append State abb. to state list.
+        state.append(us_state_abbrev[row[4]])
+    #print(state)
 
+clean_data = zip(emp_id, First_Name, Last_Name, new_date_format, ssn_new, state)
 
+# Create file output path.
+output_path = os.path.join("output_main_PyBoss.csv")
+
+# Open and write file to csv.
+with open(output_path, 'w', newline='') as csvwrite:
+    cleanfile = csv.writer(csvwrite, delimiter = ",")
+    cleanfile.writerow(['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State'])
+    cleanfile.writerows(clean_data)

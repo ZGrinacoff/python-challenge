@@ -30,3 +30,17 @@ for l in paragraph:
         paragraph = paragraph.replace(l, '')
 #print(paragraph)
 
+cleaned_paragraph = paragraph.split(' ')
+#print(cleaned_paragraph)
+
+# Create letter count variable which will be initialized at 0.
+# Loop to get count and set to variable.
+letter_count = 0
+for word in cleaned_paragraph:
+    letter_count += len(word)
+#print(letter_count)
+
+# Get total word count and set equL to new variable word count.
+word_count = len(cleaned_paragraph)
+#print(word_count)
+

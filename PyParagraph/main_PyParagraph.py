@@ -42,5 +42,6 @@ for word in cleaned_paragraph:
 
 # Get total word count and set equL to new variable word count.
 word_count = len(cleaned_paragraph)
-#print(word_count)
+print(word_count)
+
 

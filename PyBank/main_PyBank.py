@@ -4,11 +4,11 @@ import csv
 # Path to collect data from PyBank folder.
 pybank_csv = os.path.join('budget_data.csv')
 
-# Create empty lists to hold column(s) data.
+# Create empty list to hold dates when file read in.
 dates = []
-revenue = []
 
-# Read in the csv file and append data to lists.
+# Read in the csv file: append dates to lists,
+# collect total revvenue, and revenue change stats.
 with open(pybank_csv,'r') as csvfile:
 
     # Split the data on columns.
@@ -18,42 +18,38 @@ with open(pybank_csv,'r') as csvfile:
     header = next(csvreader)
     #print(f"Header: {header}")
 
+    # Add variables to hold total revenue and revenue change stats.
+    prev_revenue = 0
+    max_rev_inc = 0
+    max_rev_dec = 0
+    total_revenue_change = 0
+    total_revenue = 0
+    greatest_month_increase = 0
+    greatest_month_decrease = 0
+
+    # Read in csvfile
     for row in csvreader:
-        dates.append(row[0])
-        revenue.append(int(row[1]))
-        #print(dates)
+        dates.append(row[0]) 
+        total_revenue = total_revenue + int(row[1])
+        revenue_change = int(row[1]) - prev_revenue
+        total_revenue_change = total_revenue_change + revenue_change
+        prev_revenue = int(row[1])
+
+        # Two separate conditionals for max/min changes and respective date.
+        if (revenue_change > max_rev_inc):
+            max_rev_inc = revenue_change
+            greatest_month_increase = row[0]
+        
+        if (revenue_change < max_rev_dec):
+            max_rev_dec = revenue_change
+            greatest_month_decrease = row[0]
 
 # Count total months.
 total_months = len(dates)
 #print(total_months)
-# Correctly counted number of distinct months.
-
-# Create variables to hold greatest increase/decrease.
-# Set them equal to the first row/entry in list.
-# Then add each revenue to total revenue.
-greatest_increase = revenue[0]
-greatest_decrease = revenue[0]
-total_revenue = 0
-
-# Loop through all values in revenue list to find greatest increase and decrease.
-for rev in range(len(revenue)):
-    if revenue[rev] >= greatest_increase:
-        greatest_increase = revenue[rev]
-        
-        # Set date where greatest total revenue is found in list.
-        greatest_month_increase = dates[rev]
-
-    elif revenue[rev] <= greatest_decrease:
-        greatest_decrease = revenue[rev]
-        
-        # Set date where greatest total loss is found in list.
-        greatest_month_decrease = dates[rev]
-
-    # Add each revenue to calculate total revenue.
-    total_revenue += revenue[rev]
 
 # Calculation for average change.
-average_change = round(total_revenue/total_months, 2)
+average_change = round(total_revenue_change/total_months, 2)
 
 # Print results out to terminal window.
 print("Financial Analysis")
@@ -61,8 +57,8 @@ print("-"*50)
 print(f"Total Months: {total_months}")
 print(f"Total Revenue: ${total_revenue: ,d}")
 print(f"Average Change: {average_change}")
-print(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase: ,d}")
-print(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease: ,d})")
+print(f"Greatest Increase in Profits: {greatest_month_increase} ${max_rev_inc: ,d}")
+print(f"Greatest Decrease in Profits: {greatest_month_decrease} (${max_rev_dec: ,d})")
 
 # Create path for output file in the same folder.
 output_path = os.path.join("output_main_PyBank.txt")
@@ -74,6 +70,6 @@ with open(output_path, 'w') as writefile:
     writefile.writelines(f"\nTotal Months: {total_months}\n")
     writefile.writelines(f"Total Revenue: ${total_revenue: ,d}\n")
     writefile.writelines(f"Average Change: {average_change}\n")
-    writefile.writelines(f"Greatest Increase in Profits: {greatest_month_increase} ${greatest_increase: ,d}\n")
-    writefile.writelines(f"Greatest Decrease in Profits: {greatest_month_decrease} (${greatest_decrease: ,d})\n")
+    writefile.writelines(f"Greatest Increase in Profits: {greatest_month_increase} ${max_rev_inc: ,d}\n")
+    writefile.writelines(f"Greatest Decrease in Profits: {greatest_month_decrease} (${max_rev_dec: ,d})\n")
 
